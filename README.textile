@@ -16,8 +16,6 @@ h2. Overview
 
 * @ansi@
 ** _Adds ANSI coloring capabilities to iostream_
-* @asio@
-** _Helpers for Boost.Asio development_
 * @buffer@
 ** _Buffer classes, mostly for use with Boost.Asio (but not required)_
 * @console@
