@@ -46,7 +46,9 @@ struct byte_swapper<boost::uint8_t>
 	{}
 
 	static inline boost::uint8_t swap(boost::uint8_t value)
-	{}
+	{
+		return value;
+	}
 };
 
 template <>
@@ -84,10 +86,10 @@ struct byte_swapper<boost::int32_t>
 {
 	static inline boost::int32_t swap (boost::uint32_t val)
 	{
-        return ((((val) & 0xff000000) >> 24) |
-                (((val) & 0x00ff0000) >>  8) |
-                (((val) & 0x0000ff00) <<  8) |
-                (((val) & 0x000000ff) << 24));
+        return ((((val) & 0xff000000u) >> 24) |
+                (((val) & 0x00ff0000u) >>  8) |
+                (((val) & 0x0000ff00u) <<  8) |
+                (((val) & 0x000000ffu) << 24));
 	}
 
 	static inline void swap_inplace (boost::int32_t& val)
@@ -101,10 +103,10 @@ struct byte_swapper<boost::uint32_t>
 {
 	static inline boost::uint32_t swap (boost::uint32_t val)
 	{
-        return ((((val) & 0xff000000) >> 24) |
-                (((val) & 0x00ff0000) >>  8) |
-                (((val) & 0x0000ff00) <<  8) |
-                (((val) & 0x000000ff) << 24));
+        return ((((val) & 0xff000000u) >> 24) |
+                (((val) & 0x00ff0000u) >>  8) |
+                (((val) & 0x0000ff00u) <<  8) |
+                (((val) & 0x000000ffu) << 24));
 	}
 
 	static inline void swap_inplace (boost::uint32_t& val)
@@ -164,13 +166,13 @@ struct byte_swapper<boost::uint64_t>
 template <typename T>
 void byte_swap_inplace (T& val)
 {
-	byte_swapper<T>::swap_inplace(val);
+	swappers::byte_swapper<T>::swap_inplace(val);
 }
 
 template <typename T>
 T byte_swap (const T& val)
 {
-	return byte_swapper<T>::swap (val);
+	return swappers::byte_swapper<T>::swap (val);
 }
 
 }  // namespace endian

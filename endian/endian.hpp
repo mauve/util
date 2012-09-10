@@ -2,7 +2,7 @@
 #ifndef __UTIL_ENDIAN_HPP__
 #define __UTIL_ENDIAN_HPP__
 
-#include <util/endian/byteswap.hpp>
+#include <endian/byteswap.hpp>
 
 #include <boost/call_traits.hpp>
 #include <boost/detail/endian.hpp>

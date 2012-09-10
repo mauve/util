@@ -24,22 +24,22 @@ public:
 	~shannon ();
 
 	void set_key (const std::string& key);
-	void set_key (const unsigned char* key, std::size_t length);
+	void set_key (const char* key, std::size_t length);
 
 	void set_nonce (const std::string& nonce);
-	void set_nonce (const unsigned char* nonce, std::size_t length);
+	void set_nonce (const char* nonce, std::size_t length);
 
 	template <typename T>
 	typename boost::enable_if< boost::is_pod<T> >::type
-	set_nonce (boost::call_traits<T>::type nonce)
+	set_nonce (typename boost::call_traits<T>::type nonce)
 	{
 		set_nonce (&nonce, sizeof(nonce));
 	}
 
-	void encrypt (unsigned char* buffer, std::size_t length);
-	void decrypt (unsigned char* buffer, std::size_t length);
+	void encrypt (char* buffer, std::size_t length);
+	void decrypt (char* buffer, std::size_t length);
 
-	void finish (unsigned char* buffer, std::size_t length);
+	void finish (char* buffer, std::size_t length);
 
 	template <typename T>
 	typename boost::enable_if< boost::is_pod<T>, T>::type

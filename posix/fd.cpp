@@ -2,8 +2,9 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/posix/fd.hpp>
+#include <posix/fd.hpp>
 #include <iostream>
+#include <cerrno>
 
 namespace util {
 
@@ -30,9 +31,11 @@ bool fd::valid () const
 boost::system::error_code fd::close ()
 {
 	if (_fd < 0)
-		return boost::system::errc::success;
+		return boost::system::error_code(boost::system::errc::success,
+				boost::system::generic_category());
 
-	return boost::system::error_code(::close(_fd),
+	::close(_fd);
+	return boost::system::error_code(errno,
 			boost::system::generic_category());
 }
 
@@ -42,7 +45,7 @@ void fd::assign (int fdnum)
 	_fd = fdnum;
 }
 
-int fd::get ()
+int fd::get () const
 {
 	return _fd;
 }

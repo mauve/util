@@ -8,10 +8,10 @@
 
 #include <iostream>
 
-#include <util/process/parent.hpp>
-#include <util/process/child.hpp>
-#include <util/process/child_options.hpp>
-#include <util/stupidtest/stupidtest.hpp>
+#include <process/parent.hpp>
+#include <process/child.hpp>
+#include <process/child_options.hpp>
+#include <stupidtest/stupidtest.hpp>
 
 #include <boost/thread.hpp>
 

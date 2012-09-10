@@ -2,7 +2,7 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/console/console.hpp>
+#include <console/console.hpp>
 
 #include <iostream>
 #include <boost/tokenizer.hpp>

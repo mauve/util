@@ -11,7 +11,7 @@
 
 #include <signal.h>
 
-#include <util/process/_detail/spawner.hpp>
+#include <process/_detail/spawner.hpp>
 
 #ifndef NDEBUG
 #	include <iostream>

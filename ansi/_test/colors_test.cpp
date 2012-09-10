@@ -3,7 +3,7 @@
  */
 
 #include <iostream>
-#include <util/ansi/colors.hpp>
+#include <ansi/colors.hpp>
 
 using namespace util::ansi;
 

@@ -41,12 +41,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define Byte(x, i) ((SHANNON_UCHAR)(((x) >> (8*i)) & 0xFF))
 
-#if PLATFORM(LITTLE_ENDIAN) && !PLATFORM(REQUIRE_ALIGNMENT)
-/* Useful macros -- little endian words on a little endian machine */
-#define BYTE2WORD(b) (*(SHANNON_WORD *)(b))
-#define WORD2BYTE(w, b) ((*(SHANNON_WORD *)(b)) = w)
-#define XORWORD(w, b) ((*(SHANNON_WORD *)(b)) ^= w)
-#else
 /* Useful macros -- machine independent little-endian version */
 #define BYTE2WORD(b) ( \
   (((SHANNON_WORD)(b)[3] & 0xFF)<<24) | \
@@ -66,7 +60,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   (b)[1] ^= Byte(w, 1); \
   (b)[0] ^= Byte(w, 0); \
 }
-#endif
 
 /* give correct offset for the current position of the register,
  * where logically R[0] is at position "zero". Note that this works for

@@ -2,7 +2,7 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/start_once_mixin.hpp>
+#include <start_once_mixin.hpp>
 
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>

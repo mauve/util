@@ -9,8 +9,8 @@
 
 #include <boost/system/error_code.hpp>
 
-#include <util/process/native_process_id.hpp>
-#include <util/process/stream_descriptor.hpp>
+#include <process/native_process_id.hpp>
+#include <process/stream_descriptor.hpp>
 
 namespace util {
 

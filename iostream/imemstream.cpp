@@ -2,7 +2,7 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/iostream/imemstream.hpp>
+#include <iostream/imemstream.hpp>
 
 #include <cstring>
 #include <stdexcept>

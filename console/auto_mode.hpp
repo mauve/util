@@ -9,8 +9,8 @@
 
 #include <boost/lexical_cast.hpp>
 
-#include <util/console/mode.hpp>
-#include <util/functional/member-function-registry.hpp>
+#include <console/mode.hpp>
+#include <functional/member-function-registry.hpp>
 
 namespace util {
 

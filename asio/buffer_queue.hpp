@@ -2,7 +2,7 @@
 #ifndef __UTIL_ASIO__BUFFER_QUEUE_HPP__
 #define __UTIL_ASIO__BUFFER_QUEUE_HPP__
 
-#include <queue>
+#include <deque>
 
 #include <boost/function.hpp>
 #include <boost/asio/buffer.hpp>
@@ -28,7 +28,7 @@ public:
 		_queue.push_back(item (
 				boost::asio::buffer_cast<const void*>(buffer),
 				boost::asio::buffer_size(buffer),
-				handler));
+				cb));
 	}
 
 	bool empty () const;
@@ -44,16 +44,16 @@ public:
 
 private:
 	struct item {
-		item (const void* buffer, std::size_t size,
+		item (const char* buffer, std::size_t size,
 				const callback_type& cb);
 
 		callback_type callback;
-		void* data_buffer;
-		void* data_current;
+		const char* data_buffer;
+		const char* data_current;
 		std::size_t size;
 	};
 
-	std::queue<item> _queue;
+	std::deque<item> _queue;
 };
 
 }  // namespace asio

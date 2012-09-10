@@ -2,7 +2,7 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/buffer/appendable_buffer.hpp>
+#include <buffer/appendable_buffer.hpp>
 
 namespace util {
 

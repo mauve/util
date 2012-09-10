@@ -15,8 +15,8 @@
 
 #include <boost/smart_ptr/shared_ptr.hpp>
 
-#include <util/posix/pipe.hpp>
-#include <util/process/_detail/zero_teminated.hpp>
+#include <posix/pipe.hpp>
+#include <process/_detail/zero_teminated.hpp>
 
 namespace util {
 

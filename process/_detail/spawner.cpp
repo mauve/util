@@ -6,9 +6,9 @@
  * simple trick to remove the need for conditional
  */
 
-#include <util/process/child_options.hpp>
-#include <util/process/stream_id.hpp>
-#include <util/process/stream_descriptor.hpp>
+#include <process/child_options.hpp>
+#include <process/stream_id.hpp>
+#include <process/stream_descriptor.hpp>
 
 #define __UTIL_PROCESS__DETAIL_SPAWNER_CPP__INCLUDING 1
 #ifdef _WIN32

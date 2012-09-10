@@ -10,9 +10,9 @@
 #include <boost/thread/condition_variable.hpp>
 #include <boost/asio/io_service.hpp>
 
-#include <util/process/stream_descriptor.hpp>
-#include <util/process/child_options.hpp>
-#include <util/process/native_process_id.hpp>
+#include <process/stream_descriptor.hpp>
+#include <process/child_options.hpp>
+#include <process/native_process_id.hpp>
 
 namespace util {
 

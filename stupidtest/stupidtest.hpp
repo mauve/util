@@ -5,6 +5,7 @@
 #ifndef UTIL_STUPIDTEST_STUPIDTEST_HPP_
 #define UTIL_STUPIDTEST_STUPIDTEST_HPP_
 
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -16,7 +17,7 @@ namespace util {
 
 namespace stupidtest {
 
-void setup (const char* suite_name, bool verbose);
+void setup (const char* suite_name, bool verbose, std::ostream& target = std::cerr, bool no_at_exit_handler = false);
 
 #define ST_RUN_TEST(x) \
 	try { \

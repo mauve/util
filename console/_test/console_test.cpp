@@ -9,8 +9,8 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/smart_ptr/make_shared.hpp>
 
-#include <util/console/console.hpp>
-#include <util/console/auto_mode.hpp>
+#include <console/console.hpp>
+#include <console/auto_mode.hpp>
 
 class TestMode :
 	public util::console::mode

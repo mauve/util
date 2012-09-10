@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <util/buffer/appendable_buffer.hpp>
+#include <buffer/appendable_buffer.hpp>
 
 BOOST_AUTO_TEST_SUITE(util)
 

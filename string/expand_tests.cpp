@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <util/string/expand.hpp>
+#include <string/expand.hpp>
 
 BOOST_AUTO_TEST_SUITE(util)
 

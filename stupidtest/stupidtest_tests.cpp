@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <util/stupidtest/stupidtest.hpp>
+#include <stupidtest/stupidtest.hpp>
 
 struct Fixture
 {
@@ -12,12 +12,11 @@ struct Fixture
 
 	Fixture ()
 	{
-		util::stupidtest::setup("stupidtest", false);
+		util::stupidtest::setup("stupidtest", false, os, true);
 	}
 
 	~Fixture ()
 	{
-		os.str();
 	}
 };
 

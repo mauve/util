@@ -1,8 +1,9 @@
 
-#include <util/endian/byteswap.hpp>
+#include <endian/byteswap.hpp>
 
 #include <cstdlib>
 #include <boost/test/unit_test.hpp>
+#include <iomanip>
 
 template <typename ValueType, typename CompareType>
 void test_swapper(ValueType original, CompareType result)
@@ -18,12 +19,13 @@ void test_swapper(ValueType original, CompareType result)
 	ValueType original_copy = original;
 	swapper::swap_inplace(original_copy);
 
-	BOOST_CHECK(!std::memcmp(&original_copy, &result, sizeof(ValueType)));
+	BOOST_CHECK_MESSAGE(!std::memcmp(&original_copy, &result, sizeof(ValueType)),
+		"  result: " << std::hex << result << " original_copy: " << std::hex << original_copy);
 
 	original_copy = original;
 	CompareType swapped = swapper::swap(original_copy);
 
-	BOOST_CHECK(!std::memcmp(&result, &swapped, sizeof(ValueType)));
+	BOOST_CHECK_EQUAL(result, swapped);
 
 	/*
 	 * test public interface
@@ -32,11 +34,15 @@ void test_swapper(ValueType original, CompareType result)
 	original_copy = original;
 	endian::byte_swap_inplace(original_copy);
 
-	BOOST_CHECK(!std::memcmp(&original_copy, &result, sizeof(ValueType)));
+	BOOST_CHECK_MESSAGE(!std::memcmp(&original_copy, &result, sizeof(ValueType)),
+		"  result: " << std::hex << result << " original_copy: " << std::hex << original_copy);
 
+	original_copy = original;
 	swapped = endian::byte_swap(original_copy);
 
-	BOOST_CHECK(!std::memcmp(&result, &swapped, sizeof(ValueType)));
+	BOOST_CHECK_EQUAL(result, swapped);
+	BOOST_CHECK_MESSAGE(!std::memcmp(&result, &swapped, sizeof(ValueType)),
+		"  result: " << std::hex << result << " swapped: " << std::hex << swapped << " original_copy: " << std::hex << original_copy);
 }
 
 BOOST_AUTO_TEST_SUITE(util)

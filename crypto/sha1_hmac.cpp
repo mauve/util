@@ -1,6 +1,8 @@
 
-#include <util/crypto/sha1_hmac.hpp>
-#include <util/crypto/_detail/sha1.h>
+#include <crypto/sha1_hmac.hpp>
+#include <crypto/_detail/sha1.h>
+
+#include <stdexcept>
 
 namespace util {
 
@@ -14,7 +16,7 @@ struct sha1_hmac::context
 	{
 		return &ctx;
 	}
-}
+};
 
 sha1_hmac::sha1_hmac ()
 {}
@@ -29,18 +31,18 @@ void sha1_hmac::reset (const std::string& key)
 	reset (key.c_str(), key.length());
 }
 
-void sha1_hmac::reset (const unsigned char* key, std::size_t length)
+void sha1_hmac::reset (const char* key, std::size_t length)
 {
 	if (!_context)
 		_context.reset(new context);
-	SHA1HmacReset(_context->get(), key, length);
+	SHA1HmacReset(_context->get(), (const unsigned char*)key, length);
 }
 
-void sha1_hmac::input (const unsigned char* buffer, std::size_t length)
+void sha1_hmac::input (const char* buffer, std::size_t length)
 {
 	if (!_context)
 		throw std::invalid_argument("no key set");
-	SHA1HmacInput(_context->get(), buffer, length);
+	SHA1HmacInput(_context->get(), (const unsigned char*)buffer, length);
 }
 
 std::string sha1_hmac::finish ()

@@ -26,7 +26,7 @@ public:
 
 	boost::system::error_code close ();
 	void assign (int fdnum);
-	int get ();
+	int get () const;
 	int steal ();
 
 	fd& operator= (int fdnum);

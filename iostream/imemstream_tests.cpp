@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <util/iostream/imemstream.hpp>
+#include <iostream/imemstream.hpp>
 
 #include <string>
 

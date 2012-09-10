@@ -23,10 +23,10 @@ public:
 	sha1_hmac ();
 	sha1_hmac (const std::string& key);
 
-	void reset (const unsigned char* key, std::size_t length);
+	void reset (const char* key, std::size_t length);
 	void reset (const std::string& key);
 
-	void input (const unsigned char* buffer, std::size_t length);
+	void input (const char* buffer, std::size_t length);
 
 	std::string finish ();
 

@@ -24,6 +24,10 @@
 #ifndef _SHA1_H_
 #define _SHA1_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef unsigned int uint32;
 typedef unsigned char byte;
 
@@ -59,5 +63,8 @@ void SHA1HmacReset(SHA1HmacContext *, const unsigned char *, unsigned);
 void SHA1HmacInput(SHA1HmacContext *, const unsigned char *, unsigned);
 void SHA1HmacFinish(SHA1HmacContext *, byte digest[20]);
 
+#ifdef __cplusplus
+} // extern "C"
+#endif 
 
 #endif

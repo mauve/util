@@ -11,7 +11,7 @@
 #include <boost/noncopyable.hpp>
 #include <boost/smart_ptr/shared_ptr.hpp>
 
-#include <util/console/mode.hpp>
+#include <console/mode.hpp>
 
 namespace util {
 

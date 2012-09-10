@@ -2,8 +2,8 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <util/console/mode.hpp>
-#include <util/console/console.hpp>
+#include <console/mode.hpp>
+#include <console/console.hpp>
 
 #include <stdexcept>
 
