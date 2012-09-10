@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
+ */
 
 #ifndef __UTIL_ASIO__BUFFER_QUEUE_HPP__
 #define __UTIL_ASIO__BUFFER_QUEUE_HPP__

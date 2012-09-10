@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
+ */
 
 #ifndef __UTIL_MEMORY__READ_HPP__
 #define __UTIL_MEMORY__READ_HPP__
