@@ -1,0 +1,54 @@
+h1. @util@
+
+h2. Authors:
+
+* Mikael Olenfalk <mikael@olenfalk.se>
+
+h2. About
+
+A small collection of useful stuff for C++ development.
+
+h2. Building
+
+This project uses CMake.
+
+h2. Overview
+
+* @ansi@
+** _Adds ANSI coloring capabilities to iostream_
+* @asio@
+** _Helpers for Boost.Asio development_
+* @buffer@
+** _Buffer classes, mostly for use with Boost.Asio (but not required)_
+* @console@
+** _Helps in developing naïve console applications_
+* @crypto@
+** _Some crypto tools_
+* @endian@
+** _Byte-swapping and endian-conversion helpers_
+* @functional@
+** _Have a look for yourself_
+* @iostream@
+** _A stream-buffer for already allocated buffers as well as functions for reading and writing files._
+* @memory@
+** _Tools for reading and writing memory._
+* @posix@
+** _Helpers for programming C++ on Posix systems._
+* @process@
+** _An asynchronous library for spawning processes and reading and writing to it._
+* @stl@
+** _Small helpers for the Standard STL library._
+* @string@
+** _String manipulation utilities._
+* @stupidtest@
+** _A unit-test framework you are not supposed to use._
+* @thread@
+** _Additions to Boost.Thread._
+* @type_traits*
+** _Additions to Boost.TypeTraits._
+
+h1. Copyright
+
+bq. Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
+
+And yes I am _evil_ (therefore the above copyright).
