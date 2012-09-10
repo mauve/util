@@ -33,8 +33,7 @@ const_buffer buffer_queue::peek () const
 		throw std::out_of_range("buffer queue empty");
 
 	const item& i = _queue.front();
-	std::size_t remaining_size = i.data_current - i.data_buffer;
-	return const_buffer(i.data_current, remaining_size);
+	return const_buffer(i.data_current, i.remaining());
 }
 
 bool buffer_queue::consume (std::size_t num_bytes)
@@ -62,8 +61,7 @@ void buffer_queue::error (const error_code& ec,
 
 	const item& i = _queue.front();
 	if (i.callback) {
-		std::size_t remaining_size = i.data_current - i.data_buffer - bytes_transferred;
-		i.callback(ec, i.size - remaining_size);
+		i.callback(ec, i.consumed());
 	}
 
 	_queue.pop_front ();
@@ -73,6 +71,28 @@ void buffer_queue::cancel ()
 {
 	while (!empty())
 		error(error_code(operation_canceled, generic_category()), 0);
+}
+
+buffer_queue::item::item (boost::asio::const_buffer bf, const callback_type& cb)
+	: callback(cb),
+	  data_buffer(boost::asio::buffer_cast<const char*>(bf)),
+	  data_current(boost::asio::buffer_cast<const char*>(bf)),
+	  size(boost::asio::buffer_size(bf))
+{}
+
+buffer_queue::item::~item ()
+{}
+
+std::size_t buffer_queue::item::remaining () const
+{
+	if (data_current >= data_buffer + size)
+		return 0;
+	return data_buffer + size - data_current;
+}
+
+std::size_t buffer_queue::item::consumed () const
+{
+	return data_current - data_buffer;
 }
 
 }  // namespace asio

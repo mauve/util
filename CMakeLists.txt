@@ -13,6 +13,7 @@ set(util_test_SRCS
 
 		asio/buffer_queue.cpp
 		asio/buffer_queue.hpp
+		asio/buffer_queue_tests.cpp
 		
 		buffer/appendable_buffer.cpp
 		buffer/appendable_buffer.hpp

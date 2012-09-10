@@ -26,12 +26,9 @@ public:
 	~buffer_queue ();
 
 	template <typename ConstBuffer>
-	void push_back (ConstBuffer buffer, const callback_type& cb)
+	void push_back (const ConstBuffer& buffer, const callback_type& cb)
 	{
-		_queue.push_back(item (
-				boost::asio::buffer_cast<const void*>(buffer),
-				boost::asio::buffer_size(buffer),
-				cb));
+		_queue.push_back(item (boost::asio::buffer(buffer), cb));
 	}
 
 	bool empty () const;
@@ -47,8 +44,12 @@ public:
 
 private:
 	struct item {
-		item (const char* buffer, std::size_t size,
+		item (boost::asio::const_buffer bf,
 				const callback_type& cb);
+		~item ();
+
+		std::size_t remaining () const;
+		std::size_t consumed () const;
 
 		callback_type callback;
 		const char* data_buffer;
