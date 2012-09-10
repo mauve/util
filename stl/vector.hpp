@@ -21,8 +21,8 @@ template <typename T>
 inline std::vector<T> create_vector(const T& a, const T& b)
 {
 	std::vector<T> ret(2);
-	ret.push_back(a);
-	ret.push_back(b);
+	ret[0] = a;
+	ret[1] = b;
 	return ret;
 }
 
@@ -30,9 +30,9 @@ template <typename T>
 inline std::vector<T> create_vector(const T& a, const T& b, const T& c)
 {
 	std::vector<T> ret(3);
-	ret.push_back(a);
-	ret.push_back(b);
-	ret.push_back(c);
+	ret[0] = a;
+	ret[1] = b;
+	ret[2] = c;
 	return ret;
 }
 

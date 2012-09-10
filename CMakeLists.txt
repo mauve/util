@@ -34,6 +34,9 @@ set(util_test_SRCS
 		process/_detail/zero_terminated.cpp
 		process/_detail/zero_terminated_tests.cpp
 
+		stl/list_tests.cpp
+		stl/vector_tests.cpp
+
 		string/expand.cpp
 		string/expand_tests.cpp
 
@@ -52,6 +55,19 @@ set(util_test_SRCS
 add_executable(util_test ${util_test_SRCS})
 
 target_link_libraries(util_test ${Boost_LIBRARIES})
+
+#
+# console test
+#
+
+set(console_test_SRCS
+		console/_test/console_test.cpp
+
+		console/console.cpp
+		console/mode.cpp
+		)
+
+add_executable(console_test ${console_test_SRCS})
 
 #
 # color test
