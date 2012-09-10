@@ -5,7 +5,8 @@
 #ifndef UTIL_POSIX_PIPE_HPP_
 #define UTIL_POSIX_PIPE_HPP_
 
-#include <boost/noncopyable.hpp>
+#include <boost/move/move.hpp>
+#include <boost/system/error_code.hpp>
 
 namespace util {
 
@@ -14,15 +15,22 @@ namespace posix {
 class pipe :
 	public boost::noncopyable
 {
+	BOOST_MOVABLE_BUT_NOT_COPYABLE(pipe);
+
 public:
 	pipe ();
+	pipe (BOOST_RV_REF(pipe) other);
 	~pipe ();
 
-	int read_end ();
+	boost::system::error_code close ();
+
+	int read_end () const;
 	int steal_read_end ();
 
-	int write_end ();
+	int write_end () const;
 	int steal_write_end ();
+
+	pipe& operator= (BOOST_RV_REF(pipe) other);
 
 private:
 	int _read, _write;

@@ -27,15 +27,37 @@ pipe::pipe ()
 	_write = pipes[1];
 }
 
+pipe::pipe (BOOST_RV_REF(pipe) other)
+	: _read(other.steal_read_end()),
+	  _write(other.steal_write_end())
+{}
+
 pipe::~pipe ()
 {
-	if (_read >= 0)
-		::close(_read);
-	if (_write >= 0)
-		::close(_write);
+	(void) close();
 }
 
-int pipe::read_end()
+boost::system::error_code pipe::close ()
+{
+	int errno_code = 0;
+	if (_read != -1) {
+		if (::close(_read) < 0)
+			errno_code = errno;
+	}
+
+	if (_write != -1) {
+		if (::close(_write) < 0)
+			errno_code = errno;
+	}
+
+	_read = -1;
+	_write = -1;
+
+	return boost::system::error_code(errno_code,
+			boost::system::get_posix_category());
+}
+
+int pipe::read_end() const
 {
 	return _read;
 }
@@ -47,7 +69,7 @@ int pipe::steal_read_end()
 	return r;
 }
 
-int pipe::write_end()
+int pipe::write_end() const
 {
 	return _write;
 }
@@ -57,6 +79,14 @@ int pipe::steal_write_end()
 	int w = _write;
 	_write = -1;
 	return w;
+}
+
+pipe& pipe::operator= (BOOST_RV_REF(pipe) other)
+{
+	close ();
+	_read = other.steal_read_end();
+	_write = other.steal_write_end();
+	return *this;
 }
 
 }  // namespace posix

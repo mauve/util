@@ -14,6 +14,12 @@ fd::fd (int fdnum)
 	: _fd(fdnum)
 {}
 
+fd::fd (BOOST_RV_REF(fd) other)
+	: _fd(other._fd)
+{
+	other._fd = -1;
+}
+
 fd::fd ()
 	: _fd(-1)
 {}
@@ -50,16 +56,16 @@ int fd::get () const
 	return _fd;
 }
 
-int fd::steal ()
-{
-	int ret = _fd;
-	_fd = -1;
-	return ret;
-}
-
 fd& fd::operator= (int fdnum)
 {
 	assign (fdnum);
+	return *this;
+}
+
+fd& fd::operator= (BOOST_RV_REF(fd) other)
+{
+	assign (other._fd);
+	other._fd = -1;
 	return *this;
 }
 

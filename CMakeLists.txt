@@ -8,42 +8,72 @@ include_directories("${CMAKE_SOURCE_DIR}")
 
 set(util_test_SRCS
 		ansi/colors.cpp
+		ansi/colors.hpp
 		ansi/colors_tests.cpp
 
 		asio/buffer_queue.cpp
+		asio/buffer_queue.hpp
 		
 		buffer/appendable_buffer.cpp
+		buffer/appendable_buffer.hpp
 		buffer/appendable_buffer_tests.cpp
 
+		console/auto_mode.hpp
 		console/console.cpp
+		console/console.hpp
 		console/mode.cpp
+		console/mode.hpp
 
 		crypto/_detail/sha1.c
+		crypto/_detail/sha1.h
 		crypto/_detail/shannon_impl.cpp
+		crypto/_detail/shannon_impl.h
 
 		crypto/sha1_hmac.cpp
+		crypto/sha1_hmac.hpp
 		crypto/shannon.cpp
+		crypto/shannon.hpp
 
+		endian/byteswap.hpp
 		endian/byteswap_tests.cpp
+		endian/endian.hpp
+
+		functional/callback_map.hpp
+		functional/member-function-registry.hpp
 
 		iostream/imemstream.cpp
+		iostream/imemstream.hpp
 		iostream/imemstream_tests.cpp
+		iostream/readfile.cpp
+		iostream/readfile.hpp
+		iostream/writefile.cpp
+		iostream/writefile.hpp
 
+		memory/read.hpp
 		memory/read_tests.cpp
+
+		posix/fd.cpp
+		posix/fd.hpp
+		posix/pipe.cpp
+		posix/pipe.hpp
 
 		process/_detail/zero_terminated.cpp
 		process/_detail/zero_terminated_tests.cpp
 
+		stl/list.hpp
 		stl/list_tests.cpp
+		stl/vector.hpp
 		stl/vector_tests.cpp
 
 		string/expand.cpp
+		string/expand.hpp
 		string/expand_tests.cpp
 
 		stupidtest/stupidtest.cpp
 		stupidtest/stupidtest_tests.cpp
 
 		memstream.cpp
+		memstream.hpp
 		memstream_tests.cpp
 		util_test.cpp
 		)
