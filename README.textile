@@ -44,7 +44,7 @@ h2. Overview
 ** _A unit-test framework you are not supposed to use._
 * @thread@
 ** _Additions to Boost.Thread._
-* @type_traits*
+* @type_traits@
 ** _Additions to Boost.TypeTraits._
 
 h1. Copyright
