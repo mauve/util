@@ -10,7 +10,7 @@ struct MemoryOutputStreamFixture
 	enum { size = 20 };
 
 	char* data;
-	util::memory_output_stream mos;
+	util::memory::memory_output_stream mos;
 
 	MemoryOutputStreamFixture ()
 		: data(new char[size]),

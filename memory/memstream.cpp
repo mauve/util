@@ -8,6 +8,8 @@
 
 namespace util {
 
+namespace memory {
+
 memory_output_stream::memory_output_stream (char* data, std::size_t size)
 	: _begin(data), _current(data), _end(data + size)
 {}
@@ -56,5 +58,7 @@ const char* memory_input_stream::reserve (std::size_t length)
 	_current += length;
 	return region;
 }
+
+}  // namespace memory
 
 }  // namespace util

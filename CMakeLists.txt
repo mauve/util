@@ -49,6 +49,9 @@ set(util_test_SRCS
 		iostream/writefile.cpp
 		iostream/writefile.hpp
 
+		memory/memstream.cpp
+		memory/memstream.hpp
+		memory/memstream_tests.cpp
 		memory/read.hpp
 		memory/read_tests.cpp
 
@@ -72,9 +75,6 @@ set(util_test_SRCS
 		stupidtest/stupidtest.cpp
 		stupidtest/stupidtest_tests.cpp
 
-		memstream.cpp
-		memstream.hpp
-		memstream_tests.cpp
 		util_test.cpp
 		)
 

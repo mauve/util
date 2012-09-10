@@ -11,6 +11,8 @@
 
 namespace util {
 
+namespace memory {
+
 /*
  * memory_output_stream
  */
@@ -83,6 +85,8 @@ operator>> (memory_input_stream& mis, T& v)
 	mis.read((char*)&v, sizeof(v));
 	return mis;
 }
+
+}  // namespace memory
 
 }  // namespace util
 
