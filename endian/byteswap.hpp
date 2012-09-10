@@ -11,10 +11,10 @@ namespace endian {
 // public interface here:
 
 template <typename T>
-void byte_swap_inplace (T& val);
+inline void byte_swap_inplace (T& val);
 
 template <typename T>
-T byte_swap (const T& val);
+inline T byte_swap (const T& val);
 
 
 // implementation
@@ -167,13 +167,13 @@ struct byte_swapper<boost::uint64_t>
 }  // namespace swappers
 
 template <typename T>
-void byte_swap_inplace (T& val)
+inline void byte_swap_inplace (T& val)
 {
 	swappers::byte_swapper<T>::swap_inplace(val);
 }
 
 template <typename T>
-T byte_swap (const T& val)
+inline T byte_swap (const T& val)
 {
 	return swappers::byte_swapper<T>::swap (val);
 }

@@ -13,7 +13,7 @@
 namespace endian {
 
 template <typename T>
-T to_network (T value)
+inline T to_network (T value)
 {
 #if defined(BOOST_BIG_ENDIAN)
 	return value;
@@ -23,7 +23,7 @@ T to_network (T value)
 }
 
 template <typename T>
-T to_host (T value)
+inline T to_host (T value)
 {
 #if defined(BOOST_BIG_ENDIAN)
 	return value
@@ -33,7 +33,7 @@ T to_host (T value)
 }
 
 template <typename T>
-void to_network_inplace (T& value)
+inline void to_network_inplace (T& value)
 {
 #if defined(BOOST_LITTLE_ENDIAN)
 	swappers::byte_swapper<T>::swap_inplace(value);
@@ -41,7 +41,7 @@ void to_network_inplace (T& value)
 }
 
 template <typename T>
-void to_host_inplace (T& value)
+inline void to_host_inplace (T& value)
 {
 #if defined(BOOST_LITTLE_ENDIAN)
 	swappers::byte_swapper<T>::swap_inplace(value);
@@ -49,7 +49,7 @@ void to_host_inplace (T& value)
 }
 
 template <typename T>
-T to_little (T value)
+inline T to_little (T value)
 {
 #if defined(BOOST_BIG_ENDIAN)
 	return swappers::byte_swapper<T>::swap(value);
@@ -59,7 +59,7 @@ T to_little (T value)
 }
 
 template <typename T>
-T to_big (T value)
+inline T to_big (T value)
 {
 #if defined(BOOST_BIG_ENDIAN)
 	return value;
