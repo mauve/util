@@ -2,7 +2,7 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
-#include <asio/buffer_queue.hpp>
+#include <buffer/buffer_queue.hpp>
 
 namespace util {
 

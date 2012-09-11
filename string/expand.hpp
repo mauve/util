@@ -7,6 +7,7 @@
 
 #include <string>
 #include <map>
+#include <boost/function.hpp>
 
 namespace util {
 
@@ -14,6 +15,10 @@ namespace util {
 // with the result of replacements[string]
 // or the empty string if string is not in replacements
 std::string expand_copy (const std::string& haystack, const std::map<std::string, std::string>& replacements);
+
+// replace all occurences of ${string}
+// with the result of replacer(string)
+std::string expand_copy (const std::string& haystack, const boost::function<std::string (const std::string&)>& replacer);
 
 }  // namespace util
 

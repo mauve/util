@@ -10,14 +10,14 @@ set(util_test_SRCS
 		ansi/colors.cpp
 		ansi/colors.hpp
 		ansi/colors_tests.cpp
-
-		asio/buffer_queue.cpp
-		asio/buffer_queue.hpp
-		asio/buffer_queue_tests.cpp
 		
 		buffer/appendable_buffer.cpp
 		buffer/appendable_buffer.hpp
 		buffer/appendable_buffer_tests.cpp
+
+		buffer/buffer_queue.cpp
+		buffer/buffer_queue.hpp
+		buffer/buffer_queue_tests.cpp
 
 		console/auto_mode.hpp
 		console/console.cpp

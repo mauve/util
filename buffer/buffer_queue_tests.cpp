@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/array.hpp>
 
-#include <asio/buffer_queue.hpp>
+#include <buffer/buffer_queue.hpp>
 #include <stdexcept>
 #include <iostream>
 

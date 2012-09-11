@@ -4,6 +4,7 @@
 
 #include <string/expand.hpp>
 #include <boost/regex.hpp>
+#include <boost/ref.hpp>
 
 #include <iostream>
 
@@ -13,11 +14,11 @@ typedef std::map<std::string, std::string> map_t;
 
 namespace {
 
-struct replacer :
+struct map_replacer :
 	public std::unary_function<const boost::smatch&, const std::string&>
 {
 public:
-	replacer (const map_t& replacements)
+	map_replacer (const map_t& replacements)
 		: _replacements(replacements)
 	{}
 
@@ -35,12 +36,38 @@ private:
 	std::string _empty;
 };
 
+struct func_replacer :
+	public std::unary_function<const boost::smatch&, std::string>
+{
+	func_replacer (const boost::function<std::string(const std::string&)>& replacer)
+		: _replacer(replacer)
+	{}
+
+	std::string operator() (const boost::smatch& match) const
+	{
+		if (!_replacer)
+			return "";
+
+		return _replacer(match[1]);
+	}
+
+private:
+	const boost::function<std::string(const std::string&)>& _replacer;
+};
+
 }  // namespace
 
 std::string expand_copy (const std::string& haystack, const map_t& replacements)
 {
 	boost::regex rx("\\$\\{([^}]+)\\}");
-	replacer replacer_func(replacements);
+	map_replacer replacer_func(replacements);
+	return boost::regex_replace(haystack, rx, replacer_func);
+}
+
+std::string expand_copy (const std::string& haystack, const boost::function<std::string(const std::string&)>& replacer)
+{
+	boost::regex rx("\\$\\{([^}]+)\\}");
+	func_replacer replacer_func(replacer);
 	return boost::regex_replace(haystack, rx, replacer_func);
 }
 
