@@ -11,7 +11,7 @@
 template <typename ValueType, typename CompareType>
 void test_swapper(ValueType original, CompareType result)
 {
-	typedef endian::swappers::byte_swapper<ValueType> swapper;
+	typedef util::endian::swappers::byte_swapper<ValueType> swapper;
 
 	BOOST_CHECK_EQUAL(sizeof(ValueType), sizeof(CompareType));
 
@@ -35,13 +35,13 @@ void test_swapper(ValueType original, CompareType result)
 	 */
 
 	original_copy = original;
-	endian::byte_swap_inplace(original_copy);
+	util::endian::byte_swap_inplace(original_copy);
 
 	BOOST_CHECK_MESSAGE(!std::memcmp(&original_copy, &result, sizeof(ValueType)),
 		"  result: " << std::hex << result << " original_copy: " << std::hex << original_copy);
 
 	original_copy = original;
-	swapped = endian::byte_swap(original_copy);
+	swapped = util::endian::byte_swap(original_copy);
 
 	BOOST_CHECK_EQUAL(result, swapped);
 	BOOST_CHECK_MESSAGE(!std::memcmp(&result, &swapped, sizeof(ValueType)),

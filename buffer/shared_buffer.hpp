@@ -11,6 +11,8 @@
 
 namespace util {
 
+namespace buffer {
+
 // A reference-counted non-modifiable buffer class.
 class shared_const_buffer
 {
@@ -40,6 +42,8 @@ private:
 	boost::shared_array<char> _data;
 	boost::asio::const_buffer _buffer;
 };
+
+}  // namespace buffer
 
 }  // namespace util
 

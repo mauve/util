@@ -3,21 +3,19 @@ cmake_minimum_required(VERSION 2.8)
 project(util)
 
 find_package(Boost COMPONENTS regex system unit_test_framework thread REQUIRED)
+find_package(Doxygen)
 
 include_directories("${CMAKE_SOURCE_DIR}")
 
-set(util_test_SRCS
+set(util_SRCS
 		ansi/colors.cpp
 		ansi/colors.hpp
-		ansi/colors_tests.cpp
 		
 		buffer/appendable_buffer.cpp
 		buffer/appendable_buffer.hpp
-		buffer/appendable_buffer_tests.cpp
 
 		buffer/buffer_queue.cpp
 		buffer/buffer_queue.hpp
-		buffer/buffer_queue_tests.cpp
 
 		console/auto_mode.hpp
 		console/console.cpp
@@ -36,15 +34,12 @@ set(util_test_SRCS
 		crypto/shannon.hpp
 
 		endian/byteswap.hpp
-		endian/byteswap_tests.cpp
 		endian/endian.hpp
 
-		functional/callback_map.hpp
 		functional/member-function-registry.hpp
 
 		iostream/imemstream.cpp
 		iostream/imemstream.hpp
-		iostream/imemstream_tests.cpp
 		iostream/readfile.cpp
 		iostream/readfile.hpp
 		iostream/writefile.cpp
@@ -52,9 +47,7 @@ set(util_test_SRCS
 
 		memory/memstream.cpp
 		memory/memstream.hpp
-		memory/memstream_tests.cpp
 		memory/read.hpp
-		memory/read_tests.cpp
 
 		posix/fd.cpp
 		posix/fd.hpp
@@ -62,30 +55,72 @@ set(util_test_SRCS
 		posix/pipe.hpp
 
 		process/_detail/zero_terminated.cpp
-		process/_detail/zero_terminated_tests.cpp
 
 		stl/list.hpp
-		stl/list_tests.cpp
 		stl/vector.hpp
-		stl/vector_tests.cpp
 
 		string/expand.cpp
 		string/expand.hpp
-		string/expand_tests.cpp
 
 		stupidtest/stupidtest.cpp
+		)
+
+set(util_test_SRCS
+		ansi/colors_tests.cpp
+		
+		buffer/appendable_buffer_tests.cpp
+
+		buffer/buffer_queue_tests.cpp
+
+		endian/byteswap_tests.cpp
+
+		iostream/imemstream_tests.cpp
+
+		memory/memstream_tests.cpp
+		memory/read_tests.cpp
+
+		process/_detail/zero_terminated_tests.cpp
+
+		stl/list_tests.cpp
+		stl/vector_tests.cpp
+
+		string/expand_tests.cpp
+
 		stupidtest/stupidtest_tests.cpp
 
 		util_test.cpp
 		)
 
 #
+# documentation
+#
+
+if(DOXYGEN_FOUND)
+	configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
+	add_custom_target(doc
+		${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
+		DEPENDS ${CMAKE_BINARY_DIR}/Doxyfile ${util_SRCS}
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		COMMENT "Generating API documentation with Doxygen" VERBATIM)
+else()
+	message("-- No Doxygen found, no documentation will be generated.")
+endif()
+
+#
 # util test
 #
 
-add_executable(util_test ${util_test_SRCS})
+add_executable(util_test ${util_SRCS} ${util_test_SRCS})
 
 target_link_libraries(util_test ${Boost_LIBRARIES})
+
+#
+# examples
+add_executable(example_memory_read examples/memory/read.cpp)
+add_executable(example_memory_memstream
+					examples/memory/memstream.cpp
+					memory/memstream.hpp
+					memory/memstream.cpp)
 
 #
 # console test

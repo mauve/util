@@ -6,7 +6,7 @@
 
 namespace util {
 
-namespace asio {
+namespace buffer {
 
 using boost::asio::const_buffer;
 
@@ -95,7 +95,7 @@ std::size_t buffer_queue::item::consumed () const
 	return data_current - data_buffer;
 }
 
-}  // namespace asio
+}  // namespace buffer
 
 }  // namespace util
 

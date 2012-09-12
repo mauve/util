@@ -14,7 +14,7 @@
 
 namespace util {
 
-namespace asio {
+namespace buffer {
 
 class buffer_queue :
 	public boost::noncopyable
@@ -60,7 +60,7 @@ private:
 	std::deque<item> _queue;
 };
 
-}  // namespace asio
+}  // namespace buffer
 
 }  // namespace util
 

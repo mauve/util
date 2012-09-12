@@ -10,6 +10,8 @@
 #include <boost/call_traits.hpp>
 #include <boost/detail/endian.hpp>
 
+namespace util {
+
 namespace endian {
 
 template <typename T>
@@ -69,5 +71,7 @@ inline T to_big (T value)
 }
 
 }  // namespace endian
+
+}  // namespace util
 
 #endif /* __UTIL_ENDIAN_HPP__ */

@@ -2,6 +2,14 @@
  * Copyright (C) 2012, All rights reserved, Mikael Olenfalk <mikael@olenfalk.se>
  */
 
+/**
+ * @file
+ *
+ * Helpers for reading possibly unaligned PODs from raw memory.
+ *
+ * @example memory/read.cpp
+ */
+
 #ifndef __UTIL_MEMORY__READ_HPP__
 #define __UTIL_MEMORY__READ_HPP__
 
@@ -14,8 +22,17 @@ namespace util {
 
 namespace memory {
 
+/**
+ * @brief Reads a POD of type T from the address pointed to by @a address offsetted by @a offset.
+ *
+ * @see memory/read.cpp
+ */
 template <typename T>
+#ifdef DOCUMENTATION
+T
+#else
 typename boost::enable_if< boost::is_pod<T>, T>::type
+#endif
 read_unaligned (const char* memory, std::size_t offset = 0)
 {
 	T result;
@@ -23,8 +40,16 @@ read_unaligned (const char* memory, std::size_t offset = 0)
 	return result;
 }
 
+/**
+ * @brief Reads a POD of type T from the address pointed to by @a address and then moves
+ * the pointer past the T for further reading.
+ */
 template <typename T>
+#ifdef DOCUMENTATION
+T
+#else
 typename boost::enable_if< boost::is_pod<T>, T>::type
+#endif
 read_unaligned_stream (const char*& memory)
 {
 	T result;

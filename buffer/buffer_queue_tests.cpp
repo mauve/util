@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_SUITE(buffer_queue_tests)
 
 BOOST_AUTO_TEST_CASE(create_invariant)
 {
-	asio::buffer_queue queue;
+	buffer::buffer_queue queue;
 	BOOST_CHECK(queue.empty());
 	BOOST_CHECK_THROW(queue.peek(), std::out_of_range);
 	BOOST_CHECK(!queue.consume(1));
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(create_invariant)
 
 BOOST_AUTO_TEST_CASE(peek)
 {
-	asio::buffer_queue queue;
+	buffer::buffer_queue queue;
 	boost::array<char, 5> buffer;
 
 	callback cb;
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(peek)
 
 BOOST_AUTO_TEST_CASE(consume)
 {
-	asio::buffer_queue queue;
+	buffer::buffer_queue queue;
 	boost::array<char, 5> buffer;
 
 	callback cb;

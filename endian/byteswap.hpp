@@ -6,6 +6,8 @@
 
 #include <boost/cstdint.hpp>
 
+namespace util {
+
 namespace endian {
 
 // public interface here:
@@ -179,5 +181,7 @@ inline T byte_swap (const T& val)
 }
 
 }  // namespace endian
+
+}  // namespace util
 
 #endif /* __UTIL_ENDIAN__BYTESWAP_HPP__ */
