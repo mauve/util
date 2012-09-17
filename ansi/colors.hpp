@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <locale>
+#include <string>
 
 namespace util {
 
@@ -52,7 +53,14 @@ private:
 
 std::ostream& reset_all (std::ostream& os);
 
+// just prints the color's name
+std::ostream& operator<< (std::ostream& os, const color_t clr);
+
+// actually changes the color
 std::ostream& operator<< (std::ostream& os, const color_setting& set);
+
+color_t from_string (const std::string& color_name);
+std::string to_string (color_t color);
 
 /*
  * black, red, green, yellow, blue, magenta,

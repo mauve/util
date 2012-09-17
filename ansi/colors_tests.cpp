@@ -188,6 +188,40 @@ BOOST_AUTO_TEST_CASE(predefined_background_helpers)
 	}
 }
 
+BOOST_AUTO_TEST_CASE(convert_from_string)
+{
+	using util::ansi::from_string;
+
+#define CHECK(x) BOOST_CHECK_EQUAL(util::ansi::x, from_string(#x))
+	CHECK(black);
+	CHECK(red);
+	CHECK(green);
+	CHECK(yellow);
+	CHECK(blue);
+	CHECK(magenta);
+	CHECK(cyan);
+	CHECK(white);
+	CHECK(default_setting);
+#undef CHECK
+}
+
+BOOST_AUTO_TEST_CASE(convert_to_string)
+{
+	using util::ansi::to_string;
+
+#define CHECK(x) BOOST_CHECK_EQUAL(#x, to_string(util::ansi::x))
+	CHECK(black);
+	CHECK(red);
+	CHECK(green);
+	CHECK(yellow);
+	CHECK(blue);
+	CHECK(magenta);
+	CHECK(cyan);
+	CHECK(white);
+	CHECK(default_setting);
+#undef CHECK	
+}
+
 BOOST_AUTO_TEST_SUITE_END() // ansi_colors_tests
 
 BOOST_AUTO_TEST_SUITE_END() // util

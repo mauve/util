@@ -95,6 +95,11 @@ std::ostream& reset_all (std::ostream& os)
 	return os;
 }
 
+std::ostream& operator<< (std::ostream& os, const color_t clr)
+{
+	return os << to_string(clr);
+}
+
 std::ostream& operator<< (std::ostream& os, const color_setting& set)
 {
 	std::locale loc = os.getloc();
@@ -103,6 +108,46 @@ std::ostream& operator<< (std::ostream& os, const color_setting& set)
 		cf.apply_color(os, set);
 	}
 	return os;
+}
+
+/*
+ * string conversion routines
+ */
+color_t from_string (const std::string& color_name)
+{
+#define COMPARE(x) if (color_name == #x) return x;
+	COMPARE(black) else
+	COMPARE(red) else
+	COMPARE(green) else
+	COMPARE(yellow) else
+	COMPARE(blue) else
+	COMPARE(magenta) else
+	COMPARE(cyan) else
+	COMPARE(white) else
+	COMPARE(ignore) else
+	COMPARE(default_setting) else
+	return default_setting;
+#undef COMPARE
+}
+
+std::string to_string (color_t color)
+{
+	switch (color) {
+#define CASE(x) case x: return #x;
+		CASE(black);
+		CASE(red);
+		CASE(green);
+		CASE(yellow);
+		CASE(blue);
+		CASE(magenta);
+		CASE(cyan);
+		CASE(white);
+		CASE(ignore);
+		CASE(default_setting);
+#undef CASE
+	}
+
+	return "default_setting";
 }
 
 /*
