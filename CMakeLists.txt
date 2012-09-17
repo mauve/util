@@ -121,6 +121,9 @@ add_executable(example_memory_memstream
 					examples/memory/memstream.cpp
 					memory/memstream.hpp
 					memory/memstream.cpp)
+add_executable(example_ansi_color
+					examples/ansi/color.cpp
+					ansi/colors.cpp)
 
 #
 # console test

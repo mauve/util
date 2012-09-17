@@ -20,7 +20,7 @@ color_facet::color_facet (bool enabled)
 	: _is_enabled(enabled)
 {}
 
-void color_facet::enable (bool enabled)
+void color_facet::enable (bool enabled) const
 {
 	_is_enabled = enabled;
 }
