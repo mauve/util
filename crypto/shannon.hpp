@@ -23,10 +23,8 @@ public:
 	shannon (const std::string& key);
 	~shannon ();
 
-	void set_key (const std::string& key);
 	void set_key (const char* key, std::size_t length);
 
-	void set_nonce (const std::string& nonce);
 	void set_nonce (const char* nonce, std::size_t length);
 
 	template <typename T>
