@@ -33,7 +33,7 @@ public:
 	typename boost::enable_if< boost::is_pod<T> >::type
 	set_nonce (typename boost::call_traits<T>::type nonce)
 	{
-		set_nonce (&nonce, sizeof(nonce));
+		set_nonce ((const char*)&nonce, sizeof(nonce));
 	}
 
 	void encrypt (char* buffer, std::size_t length);
@@ -46,7 +46,7 @@ public:
 	finish ()
 	{
 		T result;
-		finish (&result, sizeof(result));
+		finish ((char*)&result, sizeof(result));
 		return result;
 	}
 
