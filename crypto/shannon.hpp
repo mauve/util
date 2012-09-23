@@ -20,7 +20,6 @@ class shannon :
 {
 public:
 	shannon ();
-	shannon (const std::string& key);
 	~shannon ();
 
 	void set_key (const char* key, std::size_t length);

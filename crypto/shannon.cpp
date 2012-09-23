@@ -21,11 +21,6 @@ struct shannon::context
 shannon::shannon ()
 {}
 
-shannon::shannon(const std::string& key)
-{
-	set_key (key);
-}
-
 shannon::~shannon()
 {}
 
