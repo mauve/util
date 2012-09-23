@@ -28,8 +28,8 @@ set(util_SRCS
 		crypto/_detail/shannon_impl.cpp
 		crypto/_detail/shannon_impl.h
 
-		crypto/sha1_hmac.cpp
-		crypto/sha1_hmac.hpp
+		crypto/sha1.cpp
+		crypto/sha1.hpp
 		crypto/shannon.cpp
 		crypto/shannon.hpp
 
