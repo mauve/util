@@ -9,7 +9,6 @@
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include <boost/type_traits/is_pod.hpp>
 #include <boost/utility/enable_if.hpp>
-#include <boost/call_traits.hpp>
 
 namespace util {
 
@@ -31,7 +30,7 @@ public:
 
 	template <typename T>
 	typename boost::enable_if< boost::is_pod<T> >::type
-	set_nonce (typename boost::call_traits<T>::type nonce)
+	set_nonce (const T& nonce)
 	{
 		set_nonce ((const char*)&nonce, sizeof(nonce));
 	}
