@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_SUITE(byteswap_tests)
 
 BOOST_AUTO_TEST_CASE(swap_int8_t)
 {
-	test_swapper<boost::int8_t, boost::uint8_t>(0xAB, 0xAB);
+	test_swapper<boost::int8_t, boost::uint8_t>(0x4B, 0x4B);
 }
 
 BOOST_AUTO_TEST_CASE(swap_uint8_t)

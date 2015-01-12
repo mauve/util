@@ -13,6 +13,7 @@
 #ifndef __UTIL_MEMORY__READ_HPP__
 #define __UTIL_MEMORY__READ_HPP__
 
+#include <boost/cstdint.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/type_traits/is_pod.hpp>
 
@@ -33,7 +34,7 @@ T
 #else
 typename boost::enable_if< boost::is_pod<T>, T>::type
 #endif
-read_unaligned (const char* memory, std::size_t offset = 0)
+read_unaligned (const boost::uint8_t* memory, std::size_t offset = 0)
 {
 	T result;
 	std::memcpy(&result, memory + offset, sizeof(T));
@@ -50,7 +51,7 @@ T
 #else
 typename boost::enable_if< boost::is_pod<T>, T>::type
 #endif
-read_unaligned_stream (const char*& memory)
+read_unaligned_stream (const boost::uint8_t*& memory)
 {
 	T result;
 	std::memcpy(&result, memory, sizeof(T));

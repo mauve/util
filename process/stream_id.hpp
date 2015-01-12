@@ -7,6 +7,11 @@
 
 #include <iosfwd>
 
+#ifdef _WIN32
+# define WIN32_LEAN_AND_MEAN
+# include <Windows.h>
+#endif
+
 namespace util {
 
 namespace process {
@@ -14,7 +19,11 @@ namespace process {
 class stream_id
 {
 public:
+#ifdef _WIN32
+  typedef HANDLE native_stream_handle;
+#else
 	typedef int native_stream_handle;
+#endif
 
 	explicit stream_id (native_stream_handle);
 	stream_id (const stream_id&);

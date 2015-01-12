@@ -7,17 +7,29 @@
 #include <cstdio>
 #include <iostream>
 
+#ifdef _WIN32
+# define WIN32_LEAN_AND_MEAN
+# include <Windows.h>
+#endif
+
 namespace util {
 
 namespace process {
 
-const stream_id stream_id::standard_out (STDOUT_FILENO);
-const stream_id stream_id::standard_in  (STDIN_FILENO);
-const stream_id stream_id::standard_err (STDERR_FILENO);
+#ifdef _WIN32
+const stream_id stream_id::standard_out{ ::GetStdHandle(STD_OUTPUT_HANDLE) };
+const stream_id stream_id::standard_in{ ::GetStdHandle(STD_INPUT_HANDLE) };
+const stream_id stream_id::standard_err{ ::GetStdHandle(STD_ERROR_HANDLE) };
+#else
+const stream_id stream_id::standard_out(STDOUT_FILENO);
+const stream_id stream_id::standard_in(STDIN_FILENO);
+const stream_id stream_id::standard_err(STDERR_FILENO);
+#endif
 
 stream_id::stream_id (native_stream_handle handle)
 	: _handle(handle)
-{}
+{
+}
 
 stream_id::stream_id (const stream_id& copy)
 	: _handle(copy._handle)

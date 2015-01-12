@@ -15,8 +15,8 @@ BOOST_AUTO_TEST_SUITE(appendable_buffer_tests)
 BOOST_AUTO_TEST_CASE(create_invariant)
 {
 	buffer::appendable_buffer buf(10);
-	BOOST_CHECK_GE(buf.capacity(), 10);
-	BOOST_CHECK_EQUAL(buf.filled_size(), 0);
+	BOOST_CHECK_GE(buf.capacity(), 10u);
+	BOOST_CHECK_EQUAL(buf.filled_size(), 0u);
 }
 
 BOOST_AUTO_TEST_CASE(get_appendable_buffer)
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(get_appendable_buffer)
 
 	boost::asio::mutable_buffer mbuf = buf.get_appendable_buffer(10);
 	BOOST_CHECK(buf.capacity() == initial_capacity);
-	BOOST_CHECK(buf.filled_size() == 0);
+	BOOST_CHECK(buf.filled_size() == 0u);
 }
 
 BOOST_AUTO_TEST_CASE(get_two_appendable_buffers)

@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "platform/environment.hpp"
+
 namespace util {
 
 namespace stupidtest {
@@ -43,7 +45,7 @@ void setup (const char* suite_name, bool verbose, std::ostream& target /* = std:
 
 	g_suite_name = suite_name;
 	g_verbose = verbose;
-	g_under_teamcity = !!std::getenv("TEAMCITY_PROJECT_NAME");
+	g_under_teamcity = platform::has_environment_variable("TEAMCITY_PROJECT_NAME");
 	g_output = &target;
 
 	if (!no_at_exit_handler)

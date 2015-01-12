@@ -10,16 +10,9 @@
 
 namespace util {
 
-namespace process {
-
-namespace _detail {
-
 class zero_terminated_list_of_strings
 {
 public:
-	zero_terminated_list_of_strings ();
-	~zero_terminated_list_of_strings ();
-
 	void add (const std::string& s);
 	void add (const std::vector<std::string>& s);
 
@@ -27,12 +20,8 @@ public:
 
 private:
 	std::vector<char*> _buf;
+  std::vector<std::string> _strings;
 };
-
-
-}  // namespace _detail
-
-}  // namespace process
 
 }  // namespace util
 

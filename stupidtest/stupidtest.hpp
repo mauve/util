@@ -43,16 +43,10 @@ void setup (const char* suite_name, bool verbose, std::ostream& target = std::ce
 		} \
 	}
 
-#ifdef __GNUC__
-#	define ST_TYPEOF(x) __typeof__(x)
-#else
-#	error Please port this.
-#endif
-
 #define ST_CHECK_OP(left, op, right) \
 	{ \
-		ST_TYPEOF(left) __left = left; \
-		ST_TYPEOF(right) __right = right; \
+		auto __left = left; \
+		auto __right = right; \
 		const char* const check_name = #left " " #op " " #right; \
 		util::stupidtest::_detail::report_check_before(check_name); \
 		if (!(__left op __right)) { \

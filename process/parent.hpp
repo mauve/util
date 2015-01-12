@@ -42,12 +42,16 @@ public:
 	void detach_all ();
 
 private:
+#ifndef _WIN32
 	void queue_signal_handler ();
 	void on_signal(const boost::system::error_code&, int signal_number);
+#endif
 
 private:
 	boost::asio::io_service& _io_service;
+#ifndef _WIN32
 	boost::asio::signal_set _signal_set;
+#endif
 	boost::mutex _mutex;
 	boost::condition_variable _cond;
 	typedef std::list<std::pair<child_pointer, child_callback_t> > child_list_t;

@@ -7,18 +7,27 @@
 
 #include <boost/bind.hpp>
 
-#include <signal.h>
-#include <sys/wait.h>
+#ifdef _WIN32
+# define WIN32_LEAN_AND_MEAN
+# include <Windows.h>
+#else
+# include <signal.h>
+# include <sys/wait.h>
+#endif
 
 namespace util {
 
 namespace process {
 
 parent::parent (boost::asio::io_service& io_service)
-	: _io_service(io_service),
-	  _signal_set(io_service, SIGCHLD)
+	: _io_service(io_service)
+#ifndef _WIN32
+	  , _signal_set(io_service, SIGCHLD)
+#endif
 {
+#ifndef _WIN32
 	queue_signal_handler ();
+#endif
 }
 
 parent::~parent()
@@ -69,6 +78,7 @@ void parent::detach_all ()
 	}
 }
 
+#ifndef _WIN32
 void parent::queue_signal_handler()
 {
 	// std::cerr << "queue_signal_handler" << std::endl;
@@ -116,8 +126,7 @@ void parent::on_signal(const boost::system::error_code& ec, int signal_number)
 
     queue_signal_handler();
 }
-
-
+#endif
 
 }  // namespace process
 
