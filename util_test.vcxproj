@@ -98,6 +98,7 @@
     <ClCompile Include="crypto\shannon.cpp" />
     <ClCompile Include="crypto\_detail\sha1_impl.c" />
     <ClCompile Include="crypto\_detail\shannon_impl.cpp" />
+    <ClCompile Include="encoding\base64.cpp" />
     <ClCompile Include="endian\byteswap_tests.cpp" />
     <ClCompile Include="iostream\imemstream.cpp" />
     <ClCompile Include="iostream\imemstream_tests.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="crypto\shannon.hpp" />
     <ClInclude Include="crypto\_detail\sha1.h" />
     <ClInclude Include="crypto\_detail\shannon_impl.h" />
+    <ClInclude Include="encoding\base64.hpp" />
     <ClInclude Include="endian\byteswap.hpp" />
     <ClInclude Include="endian\endian.hpp" />
     <ClInclude Include="functional\member-function-registry.hpp" />

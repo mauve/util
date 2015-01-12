@@ -99,6 +99,9 @@
     <ClCompile Include="crypto\_detail\sha1_impl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="encoding\base64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ansi\colors.hpp">
@@ -213,6 +216,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform\environment.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encoding\base64.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
