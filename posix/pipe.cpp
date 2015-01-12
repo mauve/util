@@ -22,7 +22,11 @@ pipe::pipe ()
 	: _read(-1), _write(-1)
 {
 	int pipes[2] = {0};
+#ifdef _WIN32
 	if (::_pipe(pipes, 4096, _O_BINARY) < 0)
+#else
+	if (::pipe(pipes) < 0)
+#endif
 	{
 		throw boost::system::system_error(errno,
 				boost::system::get_posix_category());
@@ -47,7 +51,7 @@ boost::system::error_code pipe::close ()
 	int errno_code = 0;
 	if (_read != -1) {
 #ifdef _WIN32
-    if (::_close(_read) < 0)
+		if (::_close(_read) < 0)
 #else
 		if (::close(_read) < 0)
 #endif
@@ -56,9 +60,9 @@ boost::system::error_code pipe::close ()
 
 	if (_write != -1) {
 #ifdef _WIN32
-    if (::_close(_write) < 0)
+		if (::_close(_write) < 0)
 #else
-    if (::close(_write) < 0)
+		if (::close(_write) < 0)
 #endif
       errno_code = errno;
 	}
