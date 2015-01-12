@@ -14,6 +14,8 @@
     <ProjectGuid>{AACA3496-9055-4C7C-A061-9A4CFEA9A03E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>util_test</ProjectName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -88,79 +90,49 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="buffer\appendable_buffer.cpp" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="buffer\appendable_buffer_tests.cpp" />
-    <ClCompile Include="buffer\buffer_queue.cpp" />
     <ClCompile Include="buffer\buffer_queue_tests.cpp" />
-    <ClCompile Include="console\console.cpp" />
-    <ClCompile Include="console\mode.cpp" />
-    <ClCompile Include="crypto\sha1.cpp" />
-    <ClCompile Include="crypto\shannon.cpp" />
-    <ClCompile Include="crypto\_detail\sha1_impl.c" />
-    <ClCompile Include="crypto\_detail\shannon_impl.cpp" />
-    <ClCompile Include="encoding\base64.cpp" />
     <ClCompile Include="endian\byteswap_tests.cpp" />
-    <ClCompile Include="iostream\imemstream.cpp" />
     <ClCompile Include="iostream\imemstream_tests.cpp" />
-    <ClCompile Include="iostream\readfile.cpp" />
-    <ClCompile Include="iostream\writefile.cpp" />
-    <ClCompile Include="memory\memstream.cpp" />
     <ClCompile Include="memory\memstream_tests.cpp" />
     <ClCompile Include="memory\read_tests.cpp" />
-    <ClCompile Include="platform\environment.cpp" />
-    <ClCompile Include="string\zero_terminated.cpp" />
-    <ClCompile Include="string\zero_terminated_tests.cpp" />
     <ClCompile Include="stl\list_tests.cpp" />
     <ClCompile Include="stl\vector_tests.cpp" />
-    <ClCompile Include="string\expand.cpp" />
     <ClCompile Include="string\expand_tests.cpp" />
-    <ClCompile Include="stupidtest\stupidtest.cpp" />
-    <ClCompile Include="stupidtest\stupidtest_tests.cpp" />
+    <ClCompile Include="string\zero_terminated_tests.cpp" />
     <ClCompile Include="util_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ansi\colors.hpp" />
-    <ClInclude Include="buffer\appendable_buffer.hpp" />
-    <ClInclude Include="buffer\buffer_queue.hpp" />
-    <ClInclude Include="buffer\shared_buffer.hpp" />
-    <ClInclude Include="console\auto_mode.hpp" />
-    <ClInclude Include="console\console.hpp" />
-    <ClInclude Include="console\mode.hpp" />
-    <ClInclude Include="crypto\sha1.hpp" />
-    <ClInclude Include="crypto\shannon.hpp" />
-    <ClInclude Include="crypto\_detail\sha1.h" />
-    <ClInclude Include="crypto\_detail\shannon_impl.h" />
-    <ClInclude Include="encoding\base64.hpp" />
-    <ClInclude Include="endian\byteswap.hpp" />
-    <ClInclude Include="endian\endian.hpp" />
-    <ClInclude Include="functional\member-function-registry.hpp" />
-    <ClInclude Include="iostream\imemstream.hpp" />
-    <ClInclude Include="iostream\readfile.hpp" />
-    <ClInclude Include="iostream\writefile.hpp" />
-    <ClInclude Include="memory\memstream.hpp" />
-    <ClInclude Include="memory\read.hpp" />
-    <ClInclude Include="platform\environment.hpp" />
-    <ClInclude Include="posix\fd.hpp" />
-    <ClInclude Include="posix\pipe.hpp" />
-    <ClInclude Include="process\child.hpp" />
-    <ClInclude Include="process\child_options.hpp" />
-    <ClInclude Include="process\native_process_id.hpp" />
-    <ClInclude Include="process\parent.hpp" />
-    <ClInclude Include="process\stream_descriptor.hpp" />
-    <ClInclude Include="process\stream_id.hpp" />
-    <ClInclude Include="process\_detail\spawner.hpp" />
-    <ClInclude Include="process\_detail\spawner_posix_spawn.hpp" />
-    <ClInclude Include="string\zero_teminated.hpp" />
-    <ClInclude Include="stl\list.hpp" />
-    <ClInclude Include="stl\vector.hpp" />
-    <ClInclude Include="string\expand.hpp" />
-    <ClInclude Include="stupidtest\stupidtest.hpp" />
-    <ClInclude Include="thread\async_result.hpp" />
-    <ClInclude Include="thread\unlock_guard.hpp" />
-    <ClInclude Include="type_traits\remove_cv_ref.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="util_buffer\util_buffer.vcxproj">
+      <Project>{8c373a98-294e-4331-b81c-962e38f051ed}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_console\util_console.vcxproj">
+      <Project>{10d0c632-ddc7-4e21-80de-55f00e79e2a1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_crypto\util_crypto.vcxproj">
+      <Project>{54183b87-5889-4ada-9c79-8c63f768b1bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_encoding\util_encoding.vcxproj">
+      <Project>{790a4548-dd90-42bd-8071-01c8cd58f006}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_iostream\util_iostream.vcxproj">
+      <Project>{a1a23dd0-5808-4a38-ba45-d72fdf5635ea}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_memory\util_memory.vcxproj">
+      <Project>{9c2fe7cd-f760-477a-b74a-c068fd6058b4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_platform\util_platform.vcxproj">
+      <Project>{44420ddd-5c54-4b45-a4b7-bf702829af19}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_posix\util_posix.vcxproj">
+      <Project>{387272c4-01c1-4a71-881a-8374edfc7431}</Project>
+    </ProjectReference>
+    <ProjectReference Include="util_string\util_string.vcxproj">
+      <Project>{230f334c-d889-4677-afa1-08631e35aa12}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -198,6 +170,7 @@
     <Import Project="packages\boost_exception-vc120.1.57.0.0\build\native\boost_exception-vc120.targets" Condition="Exists('packages\boost_exception-vc120.1.57.0.0\build\native\boost_exception-vc120.targets')" />
     <Import Project="packages\boost_test_exec_monitor-vc120.1.57.0.0\build\native\boost_test_exec_monitor-vc120.targets" Condition="Exists('packages\boost_test_exec_monitor-vc120.1.57.0.0\build\native\boost_test_exec_monitor-vc120.targets')" />
     <Import Project="packages\boost-vc120.1.57.0.0\build\native\boost-vc120.targets" Condition="Exists('packages\boost-vc120.1.57.0.0\build\native\boost-vc120.targets')" />
+    <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -237,5 +210,6 @@
     <Error Condition="!Exists('packages\boost_exception-vc120.1.57.0.0\build\native\boost_exception-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_exception-vc120.1.57.0.0\build\native\boost_exception-vc120.targets'))" />
     <Error Condition="!Exists('packages\boost_test_exec_monitor-vc120.1.57.0.0\build\native\boost_test_exec_monitor-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_test_exec_monitor-vc120.1.57.0.0\build\native\boost_test_exec_monitor-vc120.targets'))" />
     <Error Condition="!Exists('packages\boost-vc120.1.57.0.0\build\native\boost-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost-vc120.1.57.0.0\build\native\boost-vc120.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
 </Project>

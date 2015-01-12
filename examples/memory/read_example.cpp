@@ -21,7 +21,7 @@
  */
 int main (int argc, char* argv[])
 {
-	const char* buffer = "\xAA\xBB\xBB\xCC\xCC\xCC\xCC";
+  const boost::uint8_t buffer [] = { 0xAA, 0xBB, 0xBB, 0xCC, 0xCC, 0xCC, 0xCC };
 
 	/*
 	 * Extract uint8, uint16 and uint32 from buffer using offsets.
@@ -32,7 +32,7 @@ int main (int argc, char* argv[])
 		<< " u16=" << util::memory::read_unaligned<boost::uint16_t>(buffer, 1) << "\n"
 		<< " u32=" << util::memory::read_unaligned<boost::uint32_t>(buffer, 3) << "\n";
 
-	const char* ptr = &buffer[0];
+	const boost::uint8_t* ptr = &buffer[0];
 
 	/*
 	 * Extract uint8, uint16 and uint32 from buffer using streamed interface

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\buffer\appendable_buffer.cpp" />
+    <ClCompile Include="..\buffer\buffer_queue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\buffer\appendable_buffer.hpp" />
+    <ClInclude Include="..\buffer\buffer_queue.hpp" />
+    <ClInclude Include="..\buffer\shared_buffer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

@@ -4,7 +4,12 @@
 
 #include "pipe.hpp"
 
-#include <unistd.h>
+#ifdef _WIN32
+# include <io.h>
+# include <fcntl.h>
+#else
+# include <unistd.h>
+#endif
 
 #include <boost/system/error_code.hpp>
 #include <boost/system/system_error.hpp>
@@ -17,7 +22,7 @@ pipe::pipe ()
 	: _read(-1), _write(-1)
 {
 	int pipes[2] = {0};
-	if (::pipe(pipes) < 0)
+	if (::_pipe(pipes, 4096, _O_BINARY) < 0)
 	{
 		throw boost::system::system_error(errno,
 				boost::system::get_posix_category());
@@ -41,13 +46,21 @@ boost::system::error_code pipe::close ()
 {
 	int errno_code = 0;
 	if (_read != -1) {
+#ifdef _WIN32
+    if (::_close(_read) < 0)
+#else
 		if (::close(_read) < 0)
+#endif
 			errno_code = errno;
 	}
 
 	if (_write != -1) {
-		if (::close(_write) < 0)
-			errno_code = errno;
+#ifdef _WIN32
+    if (::_close(_write) < 0)
+#else
+    if (::close(_write) < 0)
+#endif
+      errno_code = errno;
 	}
 
 	_read = -1;

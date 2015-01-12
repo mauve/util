@@ -6,6 +6,10 @@
 #include <iostream>
 #include <cerrno>
 
+#ifdef _WIN32
+#include <io.h>
+#endif
+
 namespace util {
 
 namespace posix {
@@ -40,7 +44,11 @@ boost::system::error_code fd::close ()
 		return boost::system::error_code(boost::system::errc::success,
 				boost::system::generic_category());
 
-	::close(_fd);
+#ifdef _WIN32
+	::_close(_fd);
+#else
+  ::close(fd);
+#endif
 	return boost::system::error_code(errno,
 			boost::system::generic_category());
 }
