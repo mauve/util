@@ -14,8 +14,6 @@
 #include <boost/system/error_code.hpp>
 #include <boost/system/system_error.hpp>
 
-namespace util {
-
 namespace posix {
 
 pipe::pipe ()
@@ -36,7 +34,7 @@ pipe::pipe ()
 	_write = pipes[1];
 }
 
-pipe::pipe (BOOST_RV_REF(pipe) other)
+pipe::pipe (pipe&& other)
 	: _read(other.steal_read_end()),
 	  _write(other.steal_write_end())
 {}
@@ -98,7 +96,7 @@ int pipe::steal_write_end()
 	return w;
 }
 
-pipe& pipe::operator= (BOOST_RV_REF(pipe) other)
+pipe& pipe::operator= (pipe&& other)
 {
 	close ();
 	_read = other.steal_read_end();
@@ -108,4 +106,3 @@ pipe& pipe::operator= (BOOST_RV_REF(pipe) other)
 
 }  // namespace posix
 
-}  // namespace util

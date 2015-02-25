@@ -19,7 +19,7 @@ public:
 	char** data();
 
 private:
-	std::vector<char*> _buf;
+  std::vector<char*> _buf;
   std::vector<std::string> _strings;
 };
 

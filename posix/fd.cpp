@@ -10,15 +10,13 @@
 #include <io.h>
 #endif
 
-namespace util {
-
 namespace posix {
 
 fd::fd (int fdnum)
 	: _fd(fdnum)
 {}
 
-fd::fd (BOOST_RV_REF(fd) other)
+fd::fd (fd&& other)
 	: _fd(other._fd)
 {
 	other._fd = -1;
@@ -64,13 +62,7 @@ int fd::get () const
 	return _fd;
 }
 
-fd& fd::operator= (int fdnum)
-{
-	assign (fdnum);
-	return *this;
-}
-
-fd& fd::operator= (BOOST_RV_REF(fd) other)
+fd& fd::operator= (fd&& other)
 {
 	assign (other._fd);
 	other._fd = -1;
@@ -99,4 +91,3 @@ std::ostream& operator<< (std::ostream& os, const fd& f)
 
 }  // namespace posix
 
-}  // namespace util

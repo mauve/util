@@ -7,20 +7,17 @@
 
 #include <iosfwd>
 
+#include <boost/noncopyable.hpp>
 #include <boost/system/error_code.hpp>
-#include <boost/move/move.hpp>
-
-namespace util {
 
 namespace posix {
 
-class fd
+class fd :
+  boost::noncopyable
 {
-	BOOST_MOVABLE_BUT_NOT_COPYABLE(fd);
-
 public:
 	explicit fd (int fdnum);
-	fd (BOOST_RV_REF(fd) other);
+	fd (fd&& other);
 	fd ();
 	~fd ();
 
@@ -30,8 +27,7 @@ public:
 	void assign (int fdnum);
 	int get () const;
 
-	fd& operator= (int fdnum);
-	fd& operator= (BOOST_RV_REF(fd) other);
+	fd& operator= (fd&& other);
 
 private:
 	int _fd;
@@ -44,7 +40,5 @@ bool operator<  (const fd& l, const fd& r);
 std::ostream& operator<< (std::ostream& os, const fd& f);
 
 }  // namespace posix
-
-}  // namespace util
 
 #endif /* UTIL_POSIX_FD_HPP_ */
